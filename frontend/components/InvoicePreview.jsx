@@ -6,7 +6,7 @@ import { useAuth } from "@/context/AuthContext";
 import { invoicePreviewStyles } from "@/assets/dummyStyles";
 import { getNavState, setNavState } from "@/lib/navState";
 
-const API_BASE = "http://localhost:4000";
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
 const PROFILE_ENDPOINT = `${API_BASE}/api/businessProfile/me`;
 const INVOICE_ENDPOINT = (id) => `${API_BASE}/api/invoices/${id}`;
 

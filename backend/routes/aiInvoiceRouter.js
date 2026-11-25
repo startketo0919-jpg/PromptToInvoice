@@ -16,9 +16,9 @@ const ai = new GoogleGenAI({ apiKey: API_KEY });
 
 // Use only valid/current model names you want to try
 const MODEL_CANDIDATES = [
-  "gemini-2.5-flash",
-  "gemini-2.5-flash-lite",
-  "gemini-2.5-pro",
+  "gemini-2.0-flash",
+  "gemini-1.5-flash",
+  "gemini-1.5-pro",
 ];
 
 function buildInvoicePrompt(promptText) {

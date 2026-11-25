@@ -9,7 +9,7 @@ import { invoicesStyles } from "@/assets/dummyStyles";
 import { useAuth } from "@/context/AuthContext";
 import { setNavState } from "@/lib/navState";
 
-const API_BASE = "http://localhost:4000";
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
 
 /* ---------- helpers ---------- */
 /* ----------------- frontend-only: normalize image URLs ----------------- */
@@ -517,7 +517,7 @@ export default function InvoicesPage() {
                             "Content-Type": "application/json",
                             Authorization: `Bearer ${tokenForCreate}`,
                         },
-                        body: JSON.stringify(aiInvoice.data),
+                        body: JSON.stringify(aiInvoice.data || aiInvoice),
                     });
 
                     if (!createRes.ok) {

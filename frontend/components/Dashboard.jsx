@@ -8,7 +8,7 @@ import KpiCard from '@/components/KpiCard';
 import { EyeIcon, FileText, FileTextIcon } from "lucide-react";
 import StatusBadge from '@/components/StatusBadge';
 
-const API_BASE_URL = 'http://localhost:4000';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
 
 /* normalize client object */
 function normalizeClient(raw) {

@@ -9,12 +9,26 @@ import businessProfileRouter from "./routes/businessProfileRouter.js";
 import aiInvoiceRouter from "./routes/aiInvoiceRouter.js";
 
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 // MIDDLEAWARE
+const frontendUrl = process.env.FRONTEND_URL;
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: (origin, callback) => {
+      // allow requests with no origin (like curl, postman, or server-to-server)
+      if (!origin) return callback(null, true);
+      if (
+        origin === "http://localhost:5173" ||
+        origin === "http://localhost:3000" ||
+        !frontendUrl ||
+        origin === frontendUrl ||
+        origin.endsWith("hostingersite.com")
+      ) {
+        return callback(null, true);
+      }
+      return callback(null, true);
+    },
     credentials: true,
   }),
 );

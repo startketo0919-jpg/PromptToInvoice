@@ -9,7 +9,7 @@ import {
   useState,
 } from "react";
 
-const API_BASE = "http://localhost:4000";
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
 const TOKEN_KEY = "token";
 
 const AuthContext = createContext(null);
