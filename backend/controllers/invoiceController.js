@@ -66,15 +66,22 @@ function sanitizeItems(rawItems) {
   const items = Array.isArray(rawItems) ? rawItems : [];
 
   return items
-    .map((item, index) => ({
-      id: item?.id ? String(item.id) : String(index + 1),
-      description:
-        typeof item?.description === "string"
-          ? item.description.trim()
-          : "",
-      qty: Number(item?.qty ?? 1),
-      unitPrice: Number(item?.unitPrice ?? 0),
-    }))
+    .map((item, index) => {
+      const desc =
+        item?.description ??
+        item?.name ??
+        item?.title ??
+        item?.item ??
+        item?.service ??
+        "";
+
+      return {
+        id: item?.id ? String(item.id) : String(index + 1),
+        description: typeof desc === "string" ? desc.trim() : String(desc || "").trim(),
+        qty: Number(item?.qty ?? item?.quantity ?? 1),
+        unitPrice: Number(item?.unitPrice ?? item?.price ?? item?.rate ?? 0),
+      };
+    })
     .filter((item) => item.description.length > 0)
     .map((item) => ({
       ...item,

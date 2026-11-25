@@ -531,7 +531,7 @@ export default function InvoicesPage() {
                             errText ||
                             `Create failed (${createRes.status})`;
                         console.error(errMsg);
-                        return;
+                        throw new Error(errMsg);
                     }
 
                     const createJson = await createRes.json().catch(() => null);
